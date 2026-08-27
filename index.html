@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANZ — Fardhan Alif Fahresa</title>
+<meta name="description" content="Portofolio Fardhan Alif Fahresa — Network Enthusiast & Aspiring Developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0b0e;
+    --bg-2: #101217;
+    --panel: #14161c;
+    --panel-2: #191b22;
+    --line: #23262f;
+    --orange: #ff6a1a;
+    --orange-2: #ffb347;
+    --amber-dim: #7a5030;
+    --text: #e7e8ec;
+    --muted: #838a99;
+    --green: #4ade80;
+    --red: #ff5f57;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 15%, rgba(255,106,26,0.09), transparent 40%),
+      radial-gradient(circle at 88% 75%, rgba(255,106,26,0.07), transparent 45%);
+    pointer-events:none; z-index:0;
+  }
+  ::selection{ background: var(--orange); color:#0a0b0e; }
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--orange);}
+  a{color:inherit; text-decoration:none;}
+
+  .noise{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.02;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Top bar / tabs ---------- */
+  .topbar{ position:sticky; top:0; z-index:50; background: rgba(10,11,14,0.88); backdrop-filter: blur(10px); border-bottom:1px solid var(--line); }
+  .titlebar{ display:flex; align-items:center; gap:10px; padding:10px 18px; border-bottom:1px solid var(--line); }
+  .dot{width:11px; height:11px; border-radius:50%; display:inline-block;}
+  .dot.r{background:#ff5f57;} .dot.y{background:#febc2e;} .dot.g{background:#28c840;}
+  .brandmark{
+    margin-left:12px; font-family:'Space Grotesk'; font-weight:700; font-size:15px;
+    letter-spacing:.04em; color:var(--orange-2);
+  }
+  .brandmark span{color:var(--orange);}
+  .titlebar .path{ margin-left:auto; color:var(--muted); font-size:11.5px; letter-spacing:.02em; }
+  .tabs{ display:flex; overflow-x:auto; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{ padding:10px 16px; font-size:12.5px; color:var(--muted); white-space:nowrap; border-right:1px solid var(--line); cursor:pointer; transition:.2s; position:relative; }
+  .tab .ext{color:var(--amber-dim);}
+  .tab:hover{color:var(--text); background:var(--bg-2);}
+  .tab.active{color:var(--orange); background:var(--panel);}
+  .tab.active::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--orange); }
+
+  section{ position:relative; z-index:2; max-width:960px; margin:0 auto; padding:90px 24px; border-bottom:1px dashed var(--line); }
+  .fade{ opacity:0; transform:translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .fade.show{opacity:1; transform:translateY(0);}
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; color:var(--orange); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:18px; }
+  .eyebrow::before{content:"//"; color:var(--amber-dim);}
+  h2.section-title{ font-family:'Space Grotesk', sans-serif; font-size:clamp(26px,4vw,38px); font-weight:700; margin-bottom:34px; color:var(--text); }
+  h2.section-title .accent{color:var(--orange);}
+
+  /* ---------- Hero ---------- */
+  .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:60px; padding-bottom:60px; border-bottom:1px dashed var(--line); }
+  .hero-mark{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:clamp(70px,16vw,150px); line-height:.85; letter-spacing:-.02em;
+    color:transparent; -webkit-text-stroke:1.5px var(--orange);
+    margin-bottom:6px; user-select:none;
+  }
+  .prompt-line{ color:var(--muted); font-size:13px; margin-bottom:6px; }
+  .prompt-line .sym{color:var(--green);}
+  #typed{ color:var(--orange-2); }
+  .caret{ display:inline-block; width:9px; height:1.1em; background:var(--orange); margin-left:2px; vertical-align:-2px; animation:blink 1s step-end infinite; }
+  @keyframes blink{50%{opacity:0;}}
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif; font-size:clamp(30px, 6vw, 52px); font-weight:700; line-height:1.08;
+    margin:14px 0 10px;
+    background:linear-gradient(90deg, var(--text) 30%, var(--orange-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .role{ font-size:clamp(14px,2vw,18px); color:var(--muted); margin-bottom:22px; }
+  .hero .role strong{color:var(--orange);}
+  .hero .tagline{ max-width:600px; color:var(--muted); font-size:14.5px; margin-bottom:32px; }
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{ font-family:inherit; font-size:13px; padding:12px 22px; border-radius:6px; border:1px solid var(--orange); background:transparent; color:var(--orange); cursor:pointer; transition:.25s; display:inline-flex; align-items:center; gap:8px; }
+  .btn.solid{background:var(--orange); color:#0a0b0e; font-weight:600;}
+  .btn:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,106,26,0.25);}
+  .stat-strip{ display:flex; gap:36px; margin-top:52px; flex-wrap:wrap; }
+  .stat-strip .stat b{ display:block; font-family:'Space Grotesk'; font-size:24px; color:var(--orange-2); }
+  .stat-strip .stat span{font-size:11px; color:var(--muted); letter-spacing:.05em; text-transform:uppercase;}
+
+  /* ---------- About ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr; gap:26px; }
+  .code-card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px 24px; font-size:13.2px; overflow-x:auto; }
+  .code-card .ln{color:#4b4f5a; user-select:none; margin-right:16px;}
+  .kw{color:#ff8a4c;} .str{color:var(--green);} .prop{color:var(--orange-2);} .cm{color:#5c606c; font-style:italic;}
+
+  /* ---------- Timeline ---------- */
+  .timeline{border-left:2px solid var(--line); margin-left:8px;}
+  .tl-item{position:relative; padding:6px 0 34px 30px;}
+  .tl-item::before{ content:""; position:absolute; left:-7px; top:8px; width:12px; height:12px; border-radius:50%; background:var(--bg); border:2px solid var(--orange); }
+  .tl-item .tl-date{color:var(--orange); font-size:12px; letter-spacing:.06em;}
+  .tl-item h3{font-family:'Space Grotesk'; font-size:19px; margin:6px 0 4px; color:var(--text);}
+  .tl-item p{color:var(--muted); font-size:13.5px;}
+
+  /* ---------- Certification ---------- */
+  .cert-card{ display:flex; gap:20px; align-items:flex-start; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:26px; position:relative; overflow:hidden; }
+  .cert-card::after{ content:""; position:absolute; top:-40%; right:-20%; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(255,106,26,0.18), transparent 70%); }
+  .cert-badge{ width:56px; height:56px; flex:0 0 56px; border-radius:12px; background:linear-gradient(145deg, var(--orange), #c74d0f); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0a0b0e; font-size:12px; text-align:center; line-height:1.1;}
+  .cert-card h3{font-family:'Space Grotesk'; font-size:19px; margin-bottom:6px;}
+  .cert-card p{color:var(--muted); font-size:13.5px;}
+  .cert-tag{ display:inline-block; margin-top:10px; font-size:11px; letter-spacing:.06em; color:var(--orange-2); border:1px solid var(--amber-dim); padding:4px 10px; border-radius:20px; }
+  .org-note{ margin-top:22px; padding:18px 20px; border-left:3px solid var(--orange); background:rgba(255,106,26,0.05); font-size:13.8px; color:var(--muted); border-radius:0 8px 8px 0; }
+  .org-note b{color:var(--text);}
+
+  /* ---------- Skills ---------- */
+  .skill-groups{display:grid; grid-template-columns:1fr; gap:28px;}
+  .skill-group h3{ font-family:'Space Grotesk'; font-size:15px; color:var(--orange-2); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .skill-group h3::before{content:"▸"; color:var(--orange);}
+  .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{ font-size:12.5px; padding:8px 14px; border-radius:6px; background:var(--bg-2); border:1px solid var(--line); color:var(--text); transition:.2s; }
+  .chip:hover{border-color:var(--orange); color:var(--orange-2); transform:translateY(-2px);}
+  .bar{margin-top:10px;}
+  .bar-row{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .bar-track{height:6px; border-radius:4px; background:var(--bg-2); overflow:hidden; margin-bottom:16px;}
+  .bar-fill{height:100%; border-radius:4px; background:linear-gradient(90deg, var(--orange), var(--orange-2)); width:0%; transition:width 1.4s ease;}
+
+  /* ---------- Network status / connections (signature element) ---------- */
+  .net-panel{ background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .net-header{ display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--line); font-size:12px; color:var(--muted); }
+  .net-header .live{ display:flex; align-items:center; gap:8px; color:var(--green); }
+  .live-dot{ width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(74,222,128,.6); animation:pulse 1.8s infinite; }
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(74,222,128,.5);} 70%{box-shadow:0 0 0 8px rgba(74,222,128,0);} 100%{box-shadow:0 0 0 0 rgba(74,222,128,0);} }
+  .node-list{ display:grid; grid-template-columns:1fr; }
+  .node{ display:flex; align-items:center; gap:16px; padding:18px 20px; border-bottom:1px solid var(--line); transition:.2s; cursor:pointer; }
+  .node:last-child{border-bottom:none;}
+  .node:hover{background:var(--panel-2);}
+  .node.disabled{cursor:not-allowed; opacity:.55;}
+  .node-icon{ width:44px; height:44px; flex:0 0 44px; border-radius:10px; background:var(--bg-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; transition:.2s; }
+  .node:hover .node-icon{ border-color:var(--orange); }
+  .node-icon svg{width:22px; height:22px;}
+  .node-info{flex:1; min-width:0;}
+  .node-info .n-name{font-family:'Space Grotesk'; font-size:14.5px; color:var(--text); font-weight:600;}
+  .node-info .n-sub{font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .node-status{ font-size:10.5px; letter-spacing:.06em; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+  .node-status.online{ color:var(--green); border:1px solid #2b5a3f; background:rgba(74,222,128,0.08); }
+  .node-status.soon{ color:var(--muted); border:1px solid var(--line); background:var(--bg-2); }
+  .node-arrow{color:var(--muted); font-size:16px; transition:.2s;}
+  .node:hover .node-arrow{color:var(--orange); transform:translateX(3px);}
+
+  /* ---------- Contact / footer ---------- */
+  .contact-box{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:40px; text-align:left; }
+  .contact-box .prompt-line{margin-bottom:14px;}
+  .cta-final{ display:flex; gap:14px; flex-wrap:wrap; margin-top:24px; }
+
+  footer{ text-align:center; padding:40px 20px 60px; color:var(--muted); font-size:12px; position:relative; z-index:2; }
+  footer .orange{color:var(--orange);}
+
+  @media (min-width:720px){
+    .about-grid{grid-template-columns: 1.1fr .9fr;}
+    .skill-groups{grid-template-columns: 1fr 1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} .fade{opacity:1; transform:none;} }
+  :focus-visible{outline:2px solid var(--orange); outline-offset:3px;}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<div class="topbar">
+  <div class="titlebar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="brandmark"><span>&lt;</span>DANZ<span>/&gt;</span></span>
+    <span class="path">fardhan@portfolio: ~/profile</span>
+  </div>
+  <div class="tabs">
+    <a href="#hero" class="tab active">whoami<span class="ext">.sh</span></a>
+    <a href="#about" class="tab">about<span class="ext">.md</span></a>
+    <a href="#education" class="tab">pendidikan<span class="ext">.json</span></a>
+    <a href="#certification" class="tab">sertifikasi<span class="ext">.log</span></a>
+    <a href="#skills" class="tab">skills<span class="ext">.yaml</span></a>
+    <a href="#connect" class="tab">koneksi<span class="ext">.net</span></a>
+    <a href="#contact" class="tab">kontak<span class="ext">.txt</span></a>
+  </div>
+</div>
+
+<section class="hero" id="hero">
+  <div class="hero-mark">DANZ</div>
+  <div class="prompt-line"><span class="sym">➜</span> ~ whoami</div>
+  <div class="prompt-line" id="typed-wrap">$ <span id="typed"></span><span class="caret"></span></div>
+  <h1>Fardhan Alif<br>Fahresa</h1>
+  <div class="role">Network Enthusiast & <strong>Aspiring Developer</strong> — berbasis di Jakarta</div>
+  <p class="tagline">Lulusan TKJ bersertifikat MikroTik MTCNA, kini merambah pengembangan web. Fokus membangun sistem yang bisa diandalkan — dari konfigurasi jaringan sampai baris kode.</p>
+  <div class="btn-row">
+    <a href="https://wa.me/6285880108669" target="_blank" rel="noopener" class="btn solid">→ Hubungi via WhatsApp</a>
+  </div>
+  <div class="stat-strip">
+    <div class="stat"><b>1</b><span>Sertifikasi Networking</span></div>
+    <div class="stat"><b>TKJ</b><span>Jurusan Keahlian</span></div>
+    <div class="stat"><b>IDN IT</b><span>Komunitas</span></div>
+    <div class="stat"><b>5</b><span>Kanal Terhubung</span></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="fade">
+    <div class="eyebrow">Tentang</div>
+    <h2 class="section-title">Sedikit tentang <span class="accent">saya</span></h2>
+    <div class="about-grid">
+      <div class="code-card">
+<div><span class="ln">01</span><span class="kw">const</span> danz = {</div>
+<div><span class="ln">02</span>&nbsp;&nbsp;<span class="prop">nama</span>: <span class="str">"Fardhan Alif Fahresa"</span>,</div>
+<div><span class="ln">03</span>&nbsp;&nbsp;<span class="prop">alias</span>: <span class="str">"DANZ"</span>,</div>
+<div><span class="ln">04</span>&nbsp;&nbsp;<span class="prop">domisili</span>: <span class="str">"Jakarta, Indonesia"</span>,</div>
+<div><span class="ln">05</span>&nbsp;&nbsp;<span class="prop">latar</span>: <span class="str">"SMK TKJ"</span>,</div>
+<div><span class="ln">06</span>&nbsp;&nbsp;<span class="prop">minat</span>: [<span class="str">"networking"</span>, <span class="str">"web dev"</span>, <span class="str">"sistem"</span>],</div>
+<div><span class="ln">07</span>&nbsp;&nbsp;<span class="prop">status</span>: <span class="str">"open to opportunity"</span>,</div>
+<div><span class="ln">08</span>}; <span class="cm">// terus belajar, terus membangun</span></div>
+      </div>
+      <div>
+        <p style="color:var(--muted); font-size:14.5px; margin-bottom:16px;">
+          Berangkat dari jurusan Teknik Komputer dan Jaringan (TKJ), saya membangun fondasi kuat di dunia infrastruktur jaringan — mulai dari konfigurasi router, subnetting, sampai troubleshooting koneksi. Dari situ, ketertarikan saya berkembang ke arah pengembangan web dan pemrograman.
+        </p>
+        <p style="color:var(--muted); font-size:14.5px;">
+          Saya percaya jaringan dan kode adalah dua sisi mata uang yang sama: keduanya soal membangun sistem yang bisa diandalkan. Saat ini saya sedang aktif mengelola infrastruktur domain dan email sendiri, sekaligus memperdalam kemampuan development.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="fade">
+    <div class="eyebrow">Riwayat</div>
+    <h2 class="section-title">Jejak <span class="accent">pendidikan</span></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">SEKOLAH DASAR</div>
+        <h3>SD Al-Kamal</h3>
+        <p>Menyelesaikan jenjang pendidikan dasar.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">SEKOLAH MENENGAH PERTAMA</div>
+        <h3>MTs Al Islamiyah Srengseng</h3>
+        <p>Melanjutkan pendidikan menengah pertama.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">SEKOLAH MENENGAH KEJURUAN</div>
+        <h3>SMK Muhammadiyah 04 — Jurusan TKJ</h3>
+        <p>Mendalami Teknik Komputer dan Jaringan: instalasi jaringan, administrasi server, dan dasar keamanan sistem. Di sinilah fondasi teknis saya terbentuk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certification">
+  <div class="fade">
+    <div class="eyebrow">Kredensial</div>
+    <h2 class="section-title">Sertifikasi & <span class="accent">Organisasi</span></h2>
+    <div class="cert-card">
+      <div class="cert-badge">MTC<br>NA</div>
+      <div>
+        <h3>MTCNA — MikroTik Certified Network Associate</h3>
+        <p>Sertifikasi resmi MikroTik yang mencakup konfigurasi dasar RouterOS, routing, wireless, firewall, hingga manajemen bandwidth. Modal utama dalam memahami arsitektur jaringan secara menyeluruh.</p>
+        <span class="cert-tag">MIKROTIK CERTIFIED</span>
+      </div>
+    </div>
+    <div class="org-note">
+      <b>IDN IT Community</b> — pernah menjadi bagian dari komunitas ini, tempat berbagi wawasan seputar IT, jaringan, dan teknologi bersama sesama enthusiast di Indonesia.
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="fade">
+    <div class="eyebrow">Kemampuan</div>
+    <h2 class="section-title">Tumpukan <span class="accent">skill</span></h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Networking & Infrastructure</h3>
+        <div class="bar">
+          <div class="bar-row"><span>MikroTik RouterOS Configuration</span><span>90%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="90"></div></div>
+          <div class="bar-row"><span>Routing & Subnetting</span><span>85%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="85"></div></div>
+          <div class="bar-row"><span>Network Security Fundamentals</span><span>75%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="75"></div></div>
+          <div class="bar-row"><span>DNS & Domain Management</span><span>78%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="78"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Web Development</h3>
+        <div class="bar">
+          <div class="bar-row"><span>HTML5 & CSS3</span><span>80%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="80"></div></div>
+          <div class="bar-row"><span>JavaScript (ES6+)</span><span>65%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="65"></div></div>
+          <div class="bar-row"><span>Responsive Web Design</span><span>75%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="75"></div></div>
+          <div class="bar-row"><span>Git Version Control</span><span>60%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="60"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools & Platform</h3>
+        <div class="chip-row">
+          <span class="chip">Winbox</span>
+          <span class="chip">Cisco Packet Tracer</span>
+          <span class="chip">Wireshark</span>
+          <span class="chip">Linux (Ubuntu/Debian)</span>
+          <span class="chip">Git & GitHub</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">cPanel / DNS Zone Editor</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Kemampuan Profesional</h3>
+        <div class="chip-row">
+          <span class="chip">Problem Solving & Troubleshooting</span>
+          <span class="chip">Kerja Tim</span>
+          <span class="chip">Dokumentasi Teknis</span>
+          <span class="chip">Komunikasi</span>
+          <span class="chip">Adaptif</span>
+          <span class="chip">Rasa Ingin Tahu Tinggi</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Server & System Administration</h3>
+        <div class="bar">
+          <div class="bar-row"><span>Python Scripting</span><span>70%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="70"></div></div>
+          <div class="bar-row"><span>Ubuntu Linux Administration</span><span>75%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="75"></div></div>
+          <div class="bar-row"><span>Debian Server Management</span><span>72%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="72"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Game Server Management</h3>
+        <div class="chip-row">
+          <span class="chip">Manajemen Server GTA SAMP</span>
+          <span class="chip">Manajemen Server Minecraft</span>
+          <span class="chip">Owner/Developer Server SAMP</span>
+          <span class="chip">Pawno Scripting</span>
+        </div>
+        <p style="color:var(--muted); font-size:13px; margin-top:12px;">Berpengalaman sebagai Owner sekaligus Developer server GTA SAMP, mulai dari pengembangan skrip berbahasa Pawno hingga pengelolaan server harian. Kemampuan ini juga diterapkan dalam mengelola server Minecraft.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="fade">
+    <div class="eyebrow">Terhubung</div>
+    <h2 class="section-title">Kanal <span class="accent">koneksi</span></h2>
+    <div class="net-panel">
+      <div class="net-header">
+        <span>NETWORK STATUS — SOCIAL NODES</span>
+        <span class="live"><span class="live-dot"></span> ALL SYSTEMS OPERATIONAL</span>
+      </div>
+      <div class="node-list">
+        <a class="node" href="https://wa.me/6285880108669" target="_blank" rel="noopener">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z" fill="#4ade80"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4C8.6 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" stroke="#e7e8ec" stroke-width="1.3"/></svg>
+          </div>
+          <div class="node-info">
+            <div class="n-name">WhatsApp</div>
+            <div class="n-sub">+62 858-8010-8669 — chat langsung</div>
+          </div>
+          <span class="node-status online">ONLINE</span>
+          <span class="node-arrow">→</span>
+        </a>
+
+        <a class="node" href="https://instagram.com/its.dnzx_" target="_blank" rel="noopener">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#e7e8ec" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="#ff6a1a" stroke-width="1.3"/><circle cx="17.2" cy="6.8" r="1.1" fill="#e7e8ec"/></svg>
+          </div>
+          <div class="node-info">
+            <div class="n-name">Instagram</div>
+            <div class="n-sub">@its.dnzx_ — update & aktivitas harian</div>
+          </div>
+          <span class="node-status online">ONLINE</span>
+          <span class="node-arrow">→</span>
+        </a>
+
+        <div class="node disabled">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="#838a99" stroke-width="1.3"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.5 1-2.5 2.5-2.5S16 11 16 12.5V17M11 10v7" stroke="#838a99" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="node-info">
+            <div class="n-name">LinkedIn</div>
+            <div class="n-sub">Profil profesional — dalam persiapan</div>
+          </div>
+          <span class="node-status soon">COMING SOON</span>
+          <span class="node-arrow">···</span>
+        </div>
+
+        <a class="node" href="https://github.com/itsdnzx" target="_blank" rel="noopener">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.6.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.3-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 3.9-1.3 6.8-5.1 6.8-9.6C22 6.6 17.5 2 12 2z" fill="#e7e8ec"/></svg>
+          </div>
+          <div class="node-info">
+            <div class="n-name">GitHub</div>
+            <div class="n-sub">@itsdnzx — repository & kode</div>
+          </div>
+          <span class="node-status online">ONLINE</span>
+          <span class="node-arrow">→</span>
+        </a>
+
+        <a class="node" href="https://m.youtube.com/channel/UCra7BEX6vOYunnwXV3Hdkhw" target="_blank" rel="noopener">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="4" stroke="#e7e8ec" stroke-width="1.3"/><path d="M10 9l5 3-5 3V9z" fill="#ff6a1a"/></svg>
+          </div>
+          <div class="node-info">
+            <div class="n-name">YouTube</div>
+            <div class="n-sub">Channel — konten & dokumentasi</div>
+          </div>
+          <span class="node-status online">ONLINE</span>
+          <span class="node-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="fade">
+    <div class="eyebrow">Mari terhubung</div>
+    <h2 class="section-title">Buka <span class="accent">koneksi</span> baru</h2>
+    <div class="contact-box">
+      <div class="prompt-line"><span class="sym">➜</span> ~ cat kontak.txt</div>
+      <p style="color:var(--muted); font-size:14.5px;">Terbuka untuk peluang magang, kolaborasi proyek, maupun sekadar diskusi seputar jaringan dan pengembangan web. Respon tercepat lewat WhatsApp.</p>
+      <div class="cta-final">
+        <a href="https://wa.me/6285880108669" target="_blank" rel="noopener" class="btn solid">→ Chat di WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="orange">&lt;/&gt;</span> DANZ — Dibangun dengan HTML, CSS &amp; secangkir rasa ingin tahu — © 2026 Fardhan Alif Fahresa
+</footer>
+
+<script>
+  const phrase = "Fardhan Alif Fahresa — TKJ | MTCNA | Developer in progress";
+  const typedEl = document.getElementById('typed');
+  let i = 0;
+  function type(){ if(i <= phrase.length){ typedEl.textContent = phrase.slice(0, i); i++; setTimeout(type, 35); } }
+  type();
+
+  const faders = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } }); }, {threshold:0.15});
+  faders.forEach(f=>io.observe(f));
+
+  const bars = document.querySelectorAll('.bar-fill');
+  const barIo = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width = e.target.dataset.w + '%'; barIo.unobserve(e.target); } }); }, {threshold:0.4});
+  bars.forEach(b=>barIo.observe(b));
+
+  const sections = document.querySelectorAll('section[id]');
+  const tabs = document.querySelectorAll('.tab');
+  const tabIo = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ tabs.forEach(t=>t.classList.remove('active')); const match = document.querySelector('.tab[href="#'+entry.target.id+'"]'); if(match) match.classList.add('active'); } }); }, {threshold:0.5});
+  sections.forEach(s=>tabIo.observe(s));
+</script>
+
+</body>
+</html>
